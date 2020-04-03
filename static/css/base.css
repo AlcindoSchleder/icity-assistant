@@ -1,0 +1,105 @@
+/*
+    Theme Name: i-CityDjangoMongo
+    Author: Alcindo Schleder
+    Author URL: https://icity.net.br
+*/
+
+/* CSS Document - Reset all medias
+-----------------------------------*/
+html {
+    padding: 0;
+    margin: 0;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+div {
+    padding: 0;
+    margin: 0;
+}
+section {
+    padding: 0;
+    margin: 0;
+}
+.figure{
+    margin: 0;
+    padding: 0;
+}
+img {
+    max-width: 100%;
+}
+a, a:hover, a:active {
+    outline: 0 !important
+}
+
+/* Primary Styles
+---------------------------------*/
+html {
+	font-size: 16px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+}
+body {
+	background:url(../img/pw_maze_black_2X.png) left top repeat;
+	font-size:1rem;
+	color:#888;
+	margin: 0;
+	padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Header Styles
+---------------------------------*/
+header {
+    display: block;
+    padding-top: 3vh;
+	height: auto;
+    width: 98%;
+}
+header .sub-title {
+	font-size: 1.3rem;
+	text-transform: uppercase;
+}
+
+/* Content
+---------------------------------*/
+/* Main Page */
+.main-page {
+    height: 80vh;
+    width: 99vw;
+}
+.main-page .title,
+.main-page .subtitle {
+	text-transform: uppercase;
+}
+
+/* Footer
+---------------------------------*/
+footer {
+    display: block;
+    height: auto;
+    width: 98%;
+    padding: 0;
+    margin: 0;
+}
+footer .copyright {
+    display: block;
+    padding-top: 1.5rem;
+    margin: 0;
+	color : #ccc;
+	font-size: 0.8rem;
+	display: block;
+}
+footer .copyright .credits a{
+	color: #7cc576;
+	font-weight: 600;
+	text-decoration: none;
+	transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+}
+footer .copyright .credits a:hover {
+	color: #fff;
+}

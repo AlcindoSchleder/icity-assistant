@@ -1,0 +1,14 @@
+{% load static %}
+{% block head %}
+	<!--header-start-->
+	<header class="container text-center">
+		<div class="row">
+			<input type="hidden" name="api_host" id="api_host" value='{{host|default:"http://localhost:8000"}}' />
+			<figure class="logo col-3">
+				<a href="core:index"><img src="{% static 'img/footer-logo.png' %}" alt=""></a>
+			</figure>
+			<h1 class="col-9"><span class="sub-title">i-City Assistant</span></h1>
+		</div>
+	</header>
+	<!--header-end-->
+{% endblock %}
