@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 from django.db import models
-from datetime import datetime
+from apps.core.models import Assistants
+from apps import BOOLEAN_OPTIONS
 
 
 class WatsonComponents(models.Model):
     TYPES_COMPONENT = (
-        ('Workspace Assistant', 'Seu bot na IBM Cloud'),
+        ('Assistant Skills', 'Workspace Assistant Skills'),
         ('Watson Assistant', 'Assistente Virtual Watson'),
         ('Watson Studio', 'Aprendizado de Máquina Embarcado'),
         ('Watson Machine Learning', 'Aprendizado de Máquina'),
@@ -21,27 +22,43 @@ class WatsonComponents(models.Model):
         ('TextToSpeech', 'Transforma Texto em Fala'),
         ('Visual Recognition', 'Reconhecimento de Imagens'),
     )
-    pk_watson_components = models.CharField(max_length=50, primary_key=True, verbose_name='Nome do Componente')
-    component_type = models.CharField(max_length=50, choices=TYPES_COMPONENT, verbose_name='Tipo')
+    pk_watson_components = models.CharField(
+        max_length=50, choices=TYPES_COMPONENT, primary_key=True, verbose_name='Tipo Componente'
+    )
     dsc_comp = models.CharField(max_length=100, verbose_name='Descrição')
-    insert_date = models.DateTimeField(auto_now_add=True, default=datetime.now(), verbose_name='Data Inserção')
-    update_date = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name='Data Inserção')
+    insert_date = models.DateTimeField(auto_now_add=True, verbose_name='Data Inserção')
+    update_date = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name='Data Edição')
 
     class Meta:
         db_table = 'watson_components'
         verbose_name = 'Componentes IBM Watson'
         verbose_name_plural = 'Componentes IBM Watson'
 
+    def __str__(self):
+        return f'{self.pk_watson_components}: {self.dsc_comp}'
+
 
 class WatsonAccess(models.Model):
-    pk_watson_access = models.AutoField(primary_key=True, verbise_name='Código')
-    fk_user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Proprietário')
-    fk_watson_components = models.ForeignKey(WatsonComponents, on_delete=models.CASCADE, verbose_name='Componente')
-    api_key = models.CharField(max_length=180, null=True, blank=True, verbose_name='API Key')
-    user_name = models.CharField(max_length=100, null=True, blank=True, verbose_name='Usuário')
-    password = models.CharField(max_length=150, null=True, blank=True, verbose_name='Senha')
-    insert_date = models.DateTimeField(auto_now_add=True, default=datetime.now(), verbose_name='Data Inserção')
-    update_date = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name='Data Inserção')
+    pk_watson_access = models.AutoField(primary_key=True, verbose_name='Código')
+    fk_assistants = models.ForeignKey(
+        Assistants, on_delete=models.CASCADE, verbose_name='Assistente Virtual'
+    )
+    fk_user = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Proprietário'
+    )
+    fk_watson_components = models.ForeignKey(
+        WatsonComponents, on_delete=models.CASCADE, verbose_name='Componente'
+    )
+    component_name = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name='Nome do Componente'
+    )
+    component_id = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name='Id do Componente'
+    )
+    api_key = models.CharField(max_length=180, default='', verbose_name='API Key')
+    url = models.TextField(default='https://', verbose_name='URL')
+    insert_date = models.DateTimeField(auto_now_add=True, verbose_name='Data Inserção')
+    update_date = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name='Data Edição')
 
     class Meta:
         db_table = 'watson_access'
@@ -51,18 +68,23 @@ class WatsonAccess(models.Model):
            models.Index(fields=['fk_user', 'fk_watson_components']),
         ]
 
+    def __str__(self):
+        return f'{self.pk_watson_access}: {self.component_name}'
+
 
 class WatsonLogs(models.Model):
     pk_watson_logs = models.AutoField(primary_key=True, verbose_name='Código')
     fk_watson_components = models.ForeignKey(WatsonComponents, on_delete=models.CASCADE, verbose_name='Componente')
-    fk_user = models.ForeignKey(User, null=True, blak=True, on_delete=models.CASCADE, verbose_name='Usuário')
-    sender_name = models.CharField(max_length=100, null=True, blak=True, verbose_name='Nome do Usuário')
+    fk_user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Usuário')
+    sender_name = models.CharField(max_length=100, null=True, blank=True, verbose_name='Nome do Usuário')
     sender_message = models.TextField(verbose_name='Mensagem Enviada')
     response_message = models.TextField(verbose_name='Resposta da Mensagem')
-    flag_invalid_response = models.SmallIntegerField(default=0, verbose_name='Resposta Inválida')
-    flag_resolve = models.SmallIntegerField(default=0, verbose_name='Resolvida')
-    insert_date = models.DateTimeField(auto_now_add=True, default=datetime.now(), verbose_name='Data Inserção')
-    update_date = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name='Data Inserção')
+    flag_invalid_response = models.SmallIntegerField(
+        default=0, choices=BOOLEAN_OPTIONS, verbose_name='Resposta Inválida'
+    )
+    flag_resolve = models.SmallIntegerField(default=0, choices=BOOLEAN_OPTIONS, verbose_name='Resolvida')
+    insert_date = models.DateTimeField(auto_now_add=True, verbose_name='Data Inserção')
+    update_date = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name='Data Edição')
 
     class Meta:
         db_table = 'watson_logs'
@@ -71,3 +93,6 @@ class WatsonLogs(models.Model):
         indexes = [
            models.Index(fields=['fk_user', 'fk_watson_components', 'flag_invalid_response']),
         ]
+
+    def __str__(self):
+        return self.sender_message

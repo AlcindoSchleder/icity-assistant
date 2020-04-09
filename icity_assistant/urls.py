@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('fontawesome/', include("django_static_fontawesome.urls")),
     path('', include('apps.core.urls')),
+    path('', include('django.contrib.auth.urls')),
 ]
