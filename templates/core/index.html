@@ -4,26 +4,48 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'css/core/index.css' %}?version=2" >
+    <link rel="stylesheet" href="{% static 'css/core/select.css' %}?version=2" >
 {% endblock %}
 
-{%block title %}Django MongoDB CRUD{% endblock %}
+{%block title %}Assistentes Virtuais{% endblock %}
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock %}
+
     {% block content %}
-        <div class="messages ml-2 mr-2 rounded">
-            <div class="row block-messages">
-                <div class="col-12">
-                    <div class="rounded" id="list-messages"></div>
-                </div>
+        <div class="box-selector">
+            <div class="select-label">Selecione o Bot</div>
+            <div class="icity-select">
+                <select id="pk_assistants" name="pk_assistants">
+                    <option value=""></option>
+                    {% for assistant in qra %}
+                    <option value="{{assistant.pk_assistants}}">{{assistant.dsc_assistant}}</option>
+                    {% endfor %}
+                </select>
             </div>
-            <div class="row sender-messages mt-4">
-                <div class="col-12">
-                    <input class="rounded" type="text" id="sender-text" name="sender-text" />
-                    <icon class="fas fa-microphone" id="btn-act-microphone"></icon>
-                </div>
+            <div class="icity-button mt-2 d-none">
+                <button class="btn btn-danger btn-continue">
+                    Continuar<icon class="far fa-arrow-alt-circle-right ml-1"></icon>
+                </button>
+                <span class="text-button ml-2">
+                    Click Continuar<icon class="far fa-arrow-alt-circle-right ml-1 mr-1 text-danger"></icon>ou tecle "Enter"!
+                </span>
+            </div>
+        </div>
+        <form id="form-temp" class="form-temp d-none" method="POST" action="">
+            {% csrf_token %}
+            <div class="fields"></div>
+            <input type="submit" value="Submit" />
+        </form>
+        <div class="decorator-box">
+            <div class="decoration-publicity rounded">
+                <img class="image-fluid" src="{% static 'img/3.png' %}" />
             </div>
         </div>
     {% endblock %}
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock %}
     {% block script %}
 		<script src="{% static 'js/core/index.js' %}"></script>
-		<script src="{% static 'js/core/webaudio.js' %}"></script>
-		<script src="{% static 'js/core/pressed.js' %}"></script>
     {% endblock %}

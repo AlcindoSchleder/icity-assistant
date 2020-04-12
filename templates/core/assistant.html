@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/core/assistant.css' %}?version=2" >
+    <link rel="stylesheet" href="{% static 'css/core/select.css' %}?version=2" >
+{% endblock %}
+
+{%block title %}Django MongoDB CRUD{% endblock %}
+    {% block content %}
+        <div class="messages ml-2 mr-2 rounded">
+            <div class="row block-messages">
+                <div class="col-12">
+                    <div class="rounded" id="list-messages"></div>
+                </div>
+            </div>
+            <div class="row sender-messages mt-4">
+                <div class="col-12">
+                    <input class="rounded" type="text" id="sender-text" name="sender-text" />
+                    <icon class="fas fa-microphone" id="btn-act-microphone"></icon>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block script %}
+		<script src="{% static 'js/core/assistant.js' %}"></script>
+		<script src="{% static 'js/core/webaudio.js' %}"></script>
+		<script src="{% static 'js/core/pressed.js' %}"></script>
+    {% endblock %}

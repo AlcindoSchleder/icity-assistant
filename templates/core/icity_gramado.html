@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/core/gramado.css' %}?version=2" >
+{% endblock %}
+
+{%block title %}{{bot}}{% endblock %}
+    {% block content %}
+        <div>Código do Assistente: {{pk}}</div>
+        <div>Nome do Assistente: {{bot}}</div>
+    {% endblock %}
+    {% block script %}
+		<script src="{% static 'js/core/land_page.js' %}"></script>
+    {% endblock %}

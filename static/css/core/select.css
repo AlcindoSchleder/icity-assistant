@@ -1,0 +1,68 @@
+.box-selector {
+    margin-top: 12%;
+    margin-left: 20px;
+    padding: 20px;
+    font-size: 1.2rem;
+    width: calc(100% - 40px);
+    text-align: left;
+}
+.select-label {
+    margin-bottom: 2rem;
+	text-transform: uppercase;
+}
+select {
+    appearance: none
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 100%; /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 1.5rem; /* altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    font-size: 1.2rem; /* Tamanho da Fonte */
+    color: #CCC; /* Cor da Fonte */
+    text-indent: 0.01px; /* Remove seta padrão do FireFox */
+    text-overflow: "";  /* Remove seta padrão do FireFox */
+    select::-ms-expand {display: none;} /* Remove seta padrão do IE*/
+}
+select:focus, option:focus {
+    outline: none;
+}
+.icity-select {
+    position: relative;
+    width: 80%;
+    z-index: 1;
+    border-bottom: 1px green solid;
+}
+.icity-select::before {
+    display: block;
+    content: '\f0a7';
+    font-family: 'Font Awesome 5 Free';
+    font-size: 1.5rem;
+    height: 100%;
+    color: green;
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 1.5rem);
+    z-index: -1;
+}
+.icity-select > select {
+  background-color: transparent;
+  border: 0 none;
+  box-shadow: none;
+  font-size: 100%;
+  line-height: normal;
+}
+option {
+    background-color: #000;
+}
+
+.icity-select.active::before {
+    display: block;
+    content: '\f0a6';
+    font-family: 'Font Awesome 5 Free';
+    font-size: 1.5rem;
+    height: 100%;
+    color: green;
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 1.5rem);
+    z-index: -1
+}

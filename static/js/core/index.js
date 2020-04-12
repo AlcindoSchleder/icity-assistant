@@ -5,33 +5,30 @@
 */
 const IndexEvents = function () {
     const DocumentsEvents = function () {
-        $('#sender-text').keypress(function(event){
-            const key = (event.keyCode ? event.keyCode : event.which);
-            if(key == '13') {
-                text = $('#sender-text').val();
-                msgList = $('#list-messages')
-                msgList.append(document.createElement('div'));
-                $('#list-messages div:last').addClass('speech-bubble sender-bubble');
-                $('#list-messages div:last').append(document.createTextNode(text));
-                msgList.animate({
-                    scrollTop: msgList.prop('scrollHeight')
-                }, 1000);
-                // send a message to Watson Assistant
-            }
+        $('.icity-select').click(function() {
+            $(this).toggleClass('active');
+            const assistant = $('#pk_assistants').children("option:selected").val();
+            if (assistant != '')
+                $('.icity-button').removeClass('d-none');
+            else
+                $('.icity-button').addClass('d-none');
         });
-        Pressed.Init(document.querySelector("#btn-act-microphone"));
-        // $('.btn-act-microphone').click(async (e) => {
-        // Open Microphone and save into file for send to Watson Assistant
-        // if ((WebAudio === undefined) || (WebAudio.checkRecord() === undefined))
-        //     return false
-        // if (WebAudio.checkRecord()) {
-        //     WebAudio.startRecord();
-        // } else {
-        //     await WebAudio.stopRecord();
-        //     WebAudio.playAudio();
-        // }
-        // });
+        $('.btn-continue').click(() => {
+            const pk = $('#pk_assistants').children("option:selected").val();
+            const redirect = window.location.href + pk;
+            console.log('redirect: ', redirect)
+            redirectPost(redirect, {pk_assistants: pk});
+        })
     };
+    const redirectPost = function(location, args) {
+        let fields = '';
+        $.each( args, function( key, value ) {
+            fields += '<input type="hidden" name="'+key+'" value="'+value+'">\r';
+        });
+        $('#form-temp').attr('action', location);
+        $('#form-temp.fields').append(fields);
+        $('#form-temp').submit();
+    }
     return {
         //main function to initiate the module
         Init: function () {
@@ -42,6 +39,5 @@ const IndexEvents = function () {
 
 $(document).ready(function () {
     //normalize window.URL
-    window.URL || (window.URL = window.webkitURL || window.msURL || window.oURL);
     IndexEvents.Init()
 });

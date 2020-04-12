@@ -7,8 +7,6 @@ from apps import BOOLEAN_OPTIONS
 
 class WatsonComponents(models.Model):
     TYPES_COMPONENT = (
-        ('Assistant Skills', 'Workspace Assistant Skills'),
-        ('Watson Assistant', 'Assistente Virtual Watson'),
         ('Watson Studio', 'Aprendizado de Máquina Embarcado'),
         ('Watson Machine Learning', 'Aprendizado de Máquina'),
         ('Compare and Comply', 'Processamento de Documentos'),
@@ -40,23 +38,15 @@ class WatsonComponents(models.Model):
 
 class WatsonAccess(models.Model):
     pk_watson_access = models.AutoField(primary_key=True, verbose_name='Código')
-    fk_assistants = models.ForeignKey(
-        Assistants, on_delete=models.CASCADE, verbose_name='Assistente Virtual'
-    )
-    fk_user = models.ForeignKey(
-        User, null=True, blank=True, on_delete=models.CASCADE, verbose_name='Proprietário'
-    )
+    fk_assistants = models.ManyToManyField(Assistants)
     fk_watson_components = models.ForeignKey(
         WatsonComponents, on_delete=models.CASCADE, verbose_name='Componente'
     )
     component_name = models.CharField(
         max_length=100, null=True, blank=True, verbose_name='Nome do Componente'
     )
-    component_id = models.CharField(
-        max_length=100, null=True, blank=True, verbose_name='Id do Componente'
-    )
-    api_key = models.CharField(max_length=180, default='', verbose_name='API Key')
-    url = models.TextField(default='https://', verbose_name='URL')
+    component_key = models.CharField(max_length=180, default='', verbose_name='API Key')
+    component_url = models.TextField(default='https://', verbose_name='URL')
     insert_date = models.DateTimeField(auto_now_add=True, verbose_name='Data Inserção')
     update_date = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name='Data Edição')
 
@@ -64,9 +54,6 @@ class WatsonAccess(models.Model):
         db_table = 'watson_access'
         verbose_name = 'Chaves Accesso Componentes'
         verbose_name_plural = 'Chaves Accesso Componentes'
-        indexes = [
-           models.Index(fields=['fk_user', 'fk_watson_components']),
-        ]
 
     def __str__(self):
         return f'{self.pk_watson_access}: {self.component_name}'

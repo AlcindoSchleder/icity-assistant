@@ -23,7 +23,7 @@ class WatsonComponentsAdmin(admin.ModelAdmin):
 @admin.register(WatsonAccess)
 class WatsonAccessAdmin(admin.ModelAdmin):
     list_display = (
-        'fk_watson_components', 'fk_user', 'url', 'insert_date', 'update_date',
+        'fk_watson_components', 'component_name', 'component_url', 'insert_date', 'update_date',
     )
 
 

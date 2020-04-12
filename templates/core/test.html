@@ -8,22 +8,27 @@
 
 {%block title %}Messages{% endblock %}
     {% block content %}
-        <div class="messages ml-2 mr-2 rounded">
-            <div class="row block-messages">
-                <div class="col-12">
-                    <div class="rounded" id="list-messages">
-                        <ul class="sidebar-nav">
-                            {% if user.is_authenticated %}
-                                <li>User: {{ user.get_username }}</li>
-                                <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-                            {% else %}
-                                <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="fontList" class="text-success">
+        ** Lista de fontes **
+        <i id="icon-font" class="fas fa-check" style="font-family: 'Font Awesome 5 Free'"></i>
+    </div>
+    <div id="font-name"></div>
+    <button onclick = "gfg_Run()">
+        Click here
+    </button>
     {% endblock %}
     {% block script %}
+    <script type="text/javascript">
+        var el_up = document.getElementById("font-name");
+        var el_down = document.getElementById("icon-font");
+
+        var str = "click on button to get the font property";
+
+        el_up.innerHTML = str;
+
+        function gfg_Run() {
+            el_down.innerHTML =
+                "font-style is '" + el_up.style.fontFamily + "'";
+        }
+    </script>
     {% endblock %}

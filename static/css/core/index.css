@@ -6,91 +6,34 @@
 
 /* Content
 ---------------------------------*/
-.messages {
-    padding: 20px;
-    background-color: rgba(150, 150, 150, 0.3);
-    height: 80vh;
-    width: 99%;
+.main-page {
+    height: 50vh;
+    width: 50vw;
+	font-family: 'Montserrat', sans-serif;
 }
-.messages  .block-messages {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 60vh;
+.decorator-box {
+    background-image: url('../../img/2.png');
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 98vh;
+    width: 45vw;
+    overflow: hidden;
 }
-.messages .sender-messages {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: auto;
-}
-.messages .block-messages #list-messages {
-    width: 100%;
-    height: 63vh;
+.decoration-publicity {
     background-color: rgba(255, 255, 255, 0.4);
-    overflow: scroll;
-}
-.messages .sender-messages #sender-text {
-    margin-top: 10px;
-    padding: 5px;
-    float: left;
+    margin-top: 15vh;
+    margin-left: 5vw;
+    height: auto;
     width: 80%;
+    -webkit-box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.75);
+    -moz-box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.75);
+    box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.75);
 }
-.speech-bubble {
-    padding: 5px;
-	position: relative;
-	border-radius: .4em;
-	margin-top: 10px;
-	width: 50%;
+.text-button {
+    font-size: 0.8rem;
 }
-.speech-bubble:after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	width: 0;
-	height: 0;
-	border: 10px solid transparent;
-	border-bottom: 0;
-	margin-top: -5px;
-}
-.receiver-bubble {
-	float: left;
-	background: #ceddff;
-	margin-left: 2rem;
-}
-.receiver-bubble:after {
-	left: 0;
-	border-right-color: #ceddff;
-	border-left: 0;
-	margin-left: -10px;
-}
-.sender-bubble {
-	background: #efffcf;
-	float: right;
-	margin-right: 2rem;
-}
-.sender-bubble:after {
-	right: 0;
-	border-left-color: #efffcf;
-	border-right: 0;
-	margin-right: -10px;
-}
-.messages .sender-messages icon {
-    float: right;
-    color: #0F0;
-    margin: 5px;
-    padding: 5px 10px 5px 10px;
-    width: auto;
-    font-size: 2rem;
-    transform: scale3d(var(--scale-value), var(--scale-value), 1);
-    transition: transform cubic-bezier(0.175, 0.885, 0.32, 1.275) .2s;
-}
-.messages .sender-messages icon:hover {
-    border: 1px outset #CCC;
-    cursor: pointer;
-}
-.messages .sender-messages icon:active {
-    border: 1px inset #CCC;
-    color: #F00;
-    background-color: rgba(255, 230, 0, 0.5);
+.text-button:hover {
+    color: #fff;
+    font-weight: bolder;
 }

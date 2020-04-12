@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+		<link rel="icon" href="/static/img/favicon.png" type="image/png">
+		<link rel="shortcut icon" href="/static/img/favicon.ico" type="img/x-icon">
+
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
+
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="/static/fontawesome/css/all.min.css" type="text/css" />
+		<link rel="stylesheet" href="/static/css/base.css?version=2" >
+
+    <link rel="stylesheet" href="/static/css/core/index.css?version=2" >
+
+		<title>Messages</title>
+	</head>
+	<body>
+	    <object id="dlgHelper" classid="clsid:3050F819-98B5-11CF-BB82-00AA00BDCE0B" width="0px" height="0px"></object>
+
+
+
+	<!--header-start-->
+	<header class="container text-center">
+		<div class="row">
+			<figure class="logo col-3">
+				<a href="core:index"><img src="/static/img/footer-logo.png" alt=""></a>
+			</figure>
+			<h1 class="company-name sub-title col-1">
+				<span class="d-none">i-City</span>
+				<span class="ml-5">Smart</span>
+				<span>Environments</span>
+			</h1>
+		</div>
+	</header>
+	<!--header-end-->
+
+
+
+
+		<!-- start content -->
+		<div class="main-page">
+
+    <div id="fontList" class="text-success">
+        ** Lista de fontes **
+    </div>
+
+		</div>
+		<!-- end content -->
+
+
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="/static/js/base.js"></script>
+
+    <script type="text/javascript">
+    <!--
+        function getFonts() {
+
+            // get list of fonts, and sort alphabetically
+            var allFonts = [];
+            for (var loop=1; loop<dlgHelper.fonts.count+1; loop++) allFonts[loop-1] = dlgHelper.fonts(loop);
+            allFonts.sort();
+
+            // create output list, and include samples of each font
+            var outputStr = '';
+            var fontTestString = 'ABC abc 123';
+            for (var loop=0; loop<allFonts.length; loop++) {
+                outputStr += '<span style="font-family: ' + allFonts[loop] + ';">' + allFonts[loop] + '</span><br />\n';
+            }
+            document.getElementById('fontList').innerHTML = outputStr;
+        }
+        $(document).ready(function () {
+            getFonts();
+        });
+    //-->
+    </script>
+
+	</body>
+</html>
