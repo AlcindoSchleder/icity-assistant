@@ -91,8 +91,12 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'icity_assistant',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASS'),
+        'HOST': config('DATABASE_HOST', 'localhost'),
+        'PORT': config('DATABASE_PORT', '5432')
     }
 }
 
