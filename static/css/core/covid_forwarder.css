@@ -1,0 +1,140 @@
+/*
+    Theme Name: i-CityDjangoMongo
+    Author: Alcindo Schleder
+    Author URL: https://icity.net.br
+*/
+/* margin : top right bottom, left */
+/* padding: top right bottom, left */
+
+/* Global Config
+---------------------------------*/
+body {
+    background-image: none;
+    background-color: #fff699;
+}
+.page-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 99vw;
+    height: auto;
+    padding: 10px;
+}
+
+/* Title
+---------------------------------*/
+.title-section {
+    width: 100%;
+}
+.box-title {
+    margin-left: 10%;
+    border: 5px solid #fff;
+    color: #fff;
+    background-color: #b2dbb1;
+    width: 95%;
+}
+.box-title .subtitle {
+    font-size: 1.5rem;
+}
+.speech-bubble-right {
+	position: relative;
+	background: #f0843c;
+	color: #fff;
+	border-radius: 3rem;
+}
+.speech-bubble-left {
+	position: relative;
+	background: #f0843c;
+	color: #fff;
+	border-radius: 3rem;
+}
+.speech-bubble-right:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 33px solid transparent;
+	border-top-color: #f0843c;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -16px;
+	margin-bottom: -33px;
+}
+.speech-bubble-left:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 33px solid transparent;
+	border-top-color: #f0843c;
+	border-bottom: 0;
+	border-right: 0;
+	margin-left: -16px;
+	margin-bottom: -33px;
+}
+/* Right Info Box
+---------------------------------*/
+.first-box {
+    margin: 0 20px 2rem 2rem;
+    border: 5px solid #fff;
+    color: #fff;
+    background-color: #b2dbb1;
+    width: 100%;
+}
+.first-box .box-subtitle {
+    font-size: 3rem;
+    font-weight: bold;
+}
+.first-box img {
+    margin: -15rem 0 0 -24vw;
+    width: 150px;
+}
+.first-box .hash-tag-info {
+    margin-top: -2rem;
+    color: #546052;
+    font-size: 3rem;
+    font-weight: bolder;
+}
+.publicity-box {
+    height: 50vh;
+    width: 100%;
+    margin: 0 -15px 2rem 2rem;
+}
+
+/* Content info
+---------------------------------*/
+.info-line-two {
+    margin-top: 6rem;
+}
+.info-box {
+    background-color: transparent;
+    margin: 2rem 0 0 10px;
+    padding: 20px;
+    width: 100%;
+    height: 20vh;
+}
+.info-box img {
+    width: 60%;
+    height: auto;
+}
+.image-left {
+    position: absolute;
+    top: 8rem;
+    right: 4.5rem;
+}
+.image-right {
+    position: absolute;
+    top: 8rem;
+    right: 2rem;
+}
+.info-box div {
+    width: 50%;
+    padding: 15px;
+    height: auto;
+    font-size: 1rem;
+    font-weight: normal;
+}

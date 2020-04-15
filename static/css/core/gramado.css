@@ -10,13 +10,145 @@ body {
     background-image: url('../../img/fundo_gramado.jpeg');
     background-size: cover;
 }
-.decoration-publicity {
-    background-color: rgba(255, 255, 255, 0.4);
-    margin-top: 15vh;
-    margin-left: 5vw;
+.text-publicity {
     height: auto;
-    width: 80%;
+    width: 25%;
+    margin-left: 20px;
+    margin-top: 5vh;
+}
+.text-publicity .land-page-text {
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 100%;
+    color: #342022;
+    padding: 10px;
+}
+.text-publicity .land-page-text .subtitle-publicity {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+	text-transform: uppercase;
+}
+.text-publicity .land-page-text .presentation-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
+}
+.text-publicity .box-publicity {
+    border: 1px solid green;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin-top: 1vh;
+    height: 600px;
+    width: 600px;
     -webkit-box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.75);
     -moz-box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.75);
     box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.75);
+}
+.publicity {
+    position: fixed;
+    top: 0;
+    right: 20px;
+    height: 72vh;
+}
+.image-window {
+    padding: 5px;
+    animation: image-down 3s forwards;
+}
+.window-text {
+    margin: 15px;
+    font-weight: bold;
+    font-style: italic;
+    color: #342022;
+}
+.vertical-content {
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    width: 100%;
+    height: 0;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    animation: box-down 3s forwards;
+}
+.vertical-content .image-haste {
+    position: relative;
+    top: -8px;
+    left: -12px;
+}
+.vertical-middle {
+    padding: 0;
+    margin: 0 0 0 0;
+    background-color: #fff;
+    width: 100%;
+    height: 0;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    animation: middle-box-down 3s forwards;
+}
+.vertical-middle .image-haste {
+    position: relative;
+    top: -8px;
+    left: -12px;
+}
+.vertical-content:before {
+    padding: 0;
+    margin: 0;
+    content: "";
+    width: 6px; /* color white ("no color") color (each 2px wide); here you can adjust the width */
+    height: 0;
+    background: linear-gradient(to right, #000, #000 33.33%, #fff 33.33%, #fff 66.66%, #000 66.66%); /* here you can adjust the spacing */
+    position: absolute; /* needs to be absolute */
+    top: 0;
+    animation: line-up 3s forwards;
+}
+.vertical-middle:before {
+    padding: 0;
+    margin: 0;
+    content: "";
+    width: 6px; /* color white ("no color") color (each 2px wide); here you can adjust the width */
+    height: 0;
+    background: linear-gradient(to right, #000, #000 33.33%, #fff 33.33%, #fff 66.66%, #000 66.66%); /* here you can adjust the spacing */
+    position: absolute; /* needs to be absolute */
+    top: 0;
+    animation: line-middle 3s forwards;
+}
+/* margin: top right bottom, left */
+.box-publicity {
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 45vh;
+    width: 45vh;
+    margin: 30px 0 0 20px;
+}
+.banner-section {
+    width: 100%;
+    height: 100%;
+    padding-top: 35%;
+}
+.banner-section img {
+    width: 100%;
+}
+.banner-section div {
+    margin-top: -6rem;
+    font-size: 2rem;
+    font-weight: bold;
+    font-spacing: 5px;
+    color: #fff;
+    height: 2rem;
+    text-align: center;
+    letter-spacing: 0.8rem;
+}
+@keyframes line-up {100% {top: -200; height: 20vh}}
+@keyframes line-middle {100% {top: -200; height: 15vh}}
+@keyframes box-down {
+    0% {margin: 0; height: 0}
+    100% {margin: 20vh 0 0 0; height: 40vh}
+}
+@keyframes image-down {
+    0% {height: 10px}
+    100% {height: 30vh}
+}
+@keyframes middle-box-down {
+    0% {margin-top: 0; height: 0}
+    100% {margin-top: 15vh; height: 40vh}
 }

@@ -1,0 +1,94 @@
+/*
+    Theme Name: i-CityDjangoMongo
+    Author: Alcindo Schleder
+    Author URL: https://icity.net.br
+*/
+/* margin : top right bottom, left */
+/* padding: top right bottom, left */
+
+/* Global Config
+---------------------------------*/
+body {
+    background-image: none;
+    background-color: #2b99f8;
+}
+.page-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 99vw;
+    height: auto;
+    padding: 10px;
+}
+
+/* Title
+---------------------------------*/
+.title-section {
+    width: 100%;
+}
+.box-title {
+    margin-left: 10%;
+    border: 5px solid #fff;
+    color: #fff;
+    background-color: #b2dbb1;
+    width: 95%;
+}
+.box-title .subtitle {
+    font-size: 1.5rem;
+}
+
+/* Right Info Box
+---------------------------------*/
+.first-box {
+    margin: 0 20px 2rem 2rem;
+    border: 5px solid #fff;
+    color: #fff;
+    background-color: #b2dbb1;
+    width: 100%;
+}
+.first-box .box-subtitle {
+    font-size: 3rem;
+    font-weight: bold;
+}
+.first-box img {
+    margin: -5rem 0 0 -24vw;
+    width: 150px;
+}
+.first-box .hash-tag-info {
+    margin-top: 3rem;
+    color: #546052;
+    font-size: 3rem;
+    font-weight: bolder;
+}
+.publicity-box {
+    height: 50vh;
+    width: 100%;
+    margin: 0 -15px 2rem 2rem;
+}
+
+/* Content info
+---------------------------------*/
+.box-orange {
+    background-color: #feb17d;
+    color: #fff;
+}
+.box-yellow {
+    background-color: #fff466;
+    color: #6a6957;
+}
+.info-box {
+    margin: 2rem 0 0 10px;
+    padding: 20px;
+    width: 100%;
+    height: 20vh;
+}
+.info-box img {
+    width: 20%;
+    height: auto;
+}
+.info-box div {
+    width: 70%;
+    height: auto;
+    font-size: 1.3rem;
+    font-weight: bold;
+}

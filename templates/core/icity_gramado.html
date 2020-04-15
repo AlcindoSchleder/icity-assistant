@@ -8,8 +8,114 @@
 
 {%block title %}{{bot}}{% endblock %}
     {% block content %}
-        <div>Código do Assistente: {{pk}}</div>
-        <div>Nome do Assistente: {{bot}}</div>
+    <div class="row">
+        <section class="text-publicity col-3">
+            <div class="land-page-text">
+                <h3 class="subtitle-publicity">Venha conhecer a encantadora cidade de Gramado</h3>
+                <p class="presentation-text">
+                    Localizada no coração da Serra Gaúcha, carrega em si o dom de acolher com as mais belas paisagens!
+                </p>
+            </div>
+        </section>
+        <section class="publicity col-8">
+            <div class="row text-center">
+                <div class="col-4">
+                    <div class="vertical-content">
+                        <img class="image-fluid image-haste" src="{% static 'img/haste.png' %}" /><br />
+                        <div class="image-window">
+                            <img class="image-fluid image-window" src="{% static 'img/janela_gramado_01.jpeg' %}" /><br />
+                            <div class="text-center window-text">
+                                Av. Borges de Medeiros
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="vertical-middle">
+                        <img class="image-fluid image-haste" src="{% static 'img/haste.png' %}" /><br />
+                        <div class="image-window">
+                            <img class="image-fluid image-window" src="{% static 'img/janela_gramado_02.jpeg' %}" /><br />
+                            <div class="text-center window-text">
+                                Igreja Matriz São Pedro
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="vertical-content">
+                        <img class="image-fluid image-haste" src="{% static 'img/haste.png' %}" /><br />
+                        <div class="image-window">
+                            <img class="image-fluid" src="{% static 'img/janela_gramado_03.jpeg' %}" /><br />
+                            <div class="text-center window-text">
+                                Aldeia do Papai Noel
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row">
+        <div class="col-3 box">
+            <div class="box-publicity">
+                <div id="publicity-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for pub in publicity %}
+                            {% if forloop.first %}
+                                <li data-target="#publicity-carousel-indicators" data-slide-to="{{ forloop.counter }}" class="active"></li>
+                            {% else %}
+                                <li data-target="#publicity-carousel-indicators" data-slide-to="{{ forloop.counter }}"></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for pubty in publicity %}
+                            {% if forloop.first %}
+                                <div class="carousel-item active">
+                                    <img class="image-fluid" src="{{ pubty.file_path.url }}" />
+                                    <div class="carousel-caption d-none d-md-block transparent-backgound-black">
+                                        <h5>{{ pubty.title_media }}</h5>
+                                        <p>{{ pubty.dsc_media }}</p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="carousel-item">
+                                    <img class="image-fluid" src="{{ pubty.file_path.url }}" />
+                                    <div class="carousel-caption d-none d-md-block transparent-backgound-black">
+                                        <h5>{{ pubty.title_media }}</h5>
+                                        <p>{{ pubty.dsc_media }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#publicity-carousel-indicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#publicity-carousel-indicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-5 text-center">
+            <div class="banner-section">
+                <img class="image-fluid" src="{% static 'img/banner.png' %}" />
+                <div>GRAMADO RS</div>
+            </div>
+        </div>
+    </div>
+    <div class="d-none">
+        <div id="pk">{{ pk }}</div>
+        <div id="dsc">{{ bot }}</div>
+    </div>
+    <form id="form-temp" class="form-temp d-none" method="GET" action="">
+        <div class="fields"></div>
+        <input type="submit" value="Submit" />
+    </form>
     {% endblock %}
     {% block script %}
 		<script src="{% static 'js/core/land_page.js' %}"></script>

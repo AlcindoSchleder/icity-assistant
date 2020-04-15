@@ -20,3 +20,23 @@ class Assistants(models.Model):
 
     def __str__(self):
         return f'{self.pk_assistants}: {self.dsc_assistant}'
+
+
+class Publicity(models.Model):
+    pk_publicity = models.AutoField(primary_key=True, verbose_name='Código')
+    fk_assistants = models.ManyToManyField(
+        Assistants, null=True, blank=True, db_table='icity-pub-assistants'
+    )
+    title_media = models.CharField(max_length=50, verbose_name='Título')
+    dsc_media = models.TextField(verbose_name='Descrição')
+    file_path = models.FileField(upload_to='publicity', verbose_name='Imagens')
+    insert_date = models.DateTimeField(auto_now_add=True, verbose_name='Data Inserção')
+    update_date = models.DateTimeField(auto_now=True, null=True, blank=True, verbose_name='Data Edição')
+
+    class Meta:
+        db_table = 'icity_publicity'
+        verbose_name = 'Publicidades'
+        verbose_name_plural = 'Publicidades'
+
+    def __str__(self):
+        return f'{self.pk_publicity}: {self.dsc_media}'

@@ -5,20 +5,32 @@
 */
 const IndexEvents = function () {
     const DocumentsEvents = function () {
-        $(document).keypress(function(event){
+        $(document).on('keydown', function(event){
             const key = (event.keyCode ? event.keyCode : event.which);
-            if(key == '13') {
-                alert('Abre o chat bot')
+            const proto = window.location.protocol;
+            const port = window.location.port;
+            const host = window.location.hostname;
+            if (key == '27') {
+                const href = proto + '//' + host + ':' + (((port == 80) || (port == 443)) ? '' : port);
+                redirectPost(href, {});
+            }
+            if (key == '13') {
+                const href = window.location.href.replace('bot', 'bot_assistant');
+                console.log('call ' + href + ' with post')
+                const pka = $('#pk').html();
+                const dsca = $('#dsc').html();
+                redirectPost(href, {pk: pka, dsc: dsca});
             }
         });
     };
     const redirectPost = function(location, args) {
         let fields = '';
-        $.each( args, function( key, value ) {
+        $.each(args, function(key, value) {
             fields += '<input type="hidden" name="'+key+'" value="'+value+'">\r';
         });
         $('#form-temp').attr('action', location);
-        $('#form-temp.fields').append(fields);
+        if (fields != '')
+            $('#form-temp.fields').append(fields);
         $('#form-temp').submit();
     }
     return {
