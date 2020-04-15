@@ -9,7 +9,7 @@ const IndexEvents = function () {
             const key = (event.keyCode ? event.keyCode : event.which);
             event.preventDefault();
             if (key == '27') {
-                const href = window.location.href.replace('bot_assistant', 'bot');
+                const href = window.location.href.replace('assistant', 'bot');
                 window.location.href = href;
             }
         });

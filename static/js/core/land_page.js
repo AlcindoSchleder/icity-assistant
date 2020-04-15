@@ -16,7 +16,7 @@ const IndexEvents = function () {
                 window.location.href = href;
             }
             if (key == '13') {
-                const href = window.location.href.replace('bot', 'bot_assistant');
+                const href = window.location.href.replace('bot', 'assistant');
                 window.location.href = href;
             }
         });

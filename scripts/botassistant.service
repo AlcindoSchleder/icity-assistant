@@ -1,0 +1,19 @@
+[Unit]
+Description=dapnhe
+After=network.target
+
+
+[Service]
+PIDFile=/run/daphne/pid
+User=alcindo
+Group=root
+WorkingDirectory=/opt/python/icity-assistant
+ExecStart=/usr/local/bin/daphne -e ssl:443:privateKey=/etc/letsencrypt/live/example.com/privkey.pem:certKey=/etc/letsencrypt/live/example.com/fullchain.pem -v 2 icity_assistant.asgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+Restart=on-abort
+PrivateTmp=true
+
+
+[Install]
+WantedBy=multi-user.target
