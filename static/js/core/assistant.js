@@ -5,9 +5,17 @@
 */
 const IndexEvents = function () {
     const DocumentsEvents = function () {
-        $('#sender-text').keypress(function(event){
+        $(document).on('keydown', function(event) {
             const key = (event.keyCode ? event.keyCode : event.which);
-            if(key == '13') {
+            event.preventDefault();
+            if (key == '27') {
+                const href = window.location.href.replace('bot_assistant', 'bot');
+                window.location.href = href;
+            }
+        });
+        $('#sender-text').keypress(function(event) {
+            const key = (event.keyCode ? event.keyCode : event.which);
+            if (key == '13') {
                 text = $('#sender-text').val();
                 msgList = $('#list-messages')
                 msgList.append(document.createElement('div'));

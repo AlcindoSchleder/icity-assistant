@@ -16,7 +16,6 @@ const IndexEvents = function () {
         $('.btn-continue').click(() => {
             const pk = $('#pk_assistants').children("option:selected").val();
             const redirect = window.location.href + pk;
-            console.log('redirect: ', redirect)
             redirectPost(redirect, {pk_assistants: pk});
         })
     };
