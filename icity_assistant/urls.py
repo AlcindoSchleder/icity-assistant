@@ -24,4 +24,5 @@ urlpatterns = [
     path('fontawesome/', include("django_static_fontawesome.urls")),
     path('', include('apps.core.urls')),
     path('', include('django.contrib.auth.urls')),
+    path('', include('apps.assistant.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

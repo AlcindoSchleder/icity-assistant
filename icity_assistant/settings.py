@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_static_fontawesome',
-    # 'channels',
+    'channels',
     'apps.core',
-    'apps.watson',
+    'apps.assistant',
     'apps.login',
 ]
 
@@ -75,16 +75,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'icity_assistant.wsgi.application'
 
-# ASGI_APPLICATION = "icity_assistant.routing.application"
-#
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG': {
-#             "hosts": [('127.0.0.1', 6379)],
-#         },
-#     },
-# }
+ASGI_APPLICATION = "icity_assistant.routing.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -147,4 +147,3 @@ LOGIN_REDIRECT_URL = '/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-

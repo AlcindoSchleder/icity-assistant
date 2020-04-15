@@ -86,16 +86,6 @@ class LandPageView(TemplateView):
         }
         return render(request, self.template_name, params)
 
-class AssistantView(TemplateView):
-    template_name = 'core/assistant.html'
-
-    def get(self, request, *args, **kwargs):
-        params = {
-            'pk':  kwargs.get('pk'),
-            'dsc':  kwargs.get('dsc')
-        }
-        return render(request, self.template_name, params)
-
 
 class TestView(TemplateView):
     # login_url = '/login/'

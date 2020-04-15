@@ -3,16 +3,16 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 import json
 
 
-class DisplayConsumer(AsyncWebsocketConsumer):
-    display_id = ''
-    user_id = ''
+class AssistantConsumer(AsyncWebsocketConsumer):
+    assistant_id = ''
+    terminal_id = ''
     group_id = ''
 
     async def connect(self):
-        self.display_id = self.scope['url_route']['kwargs'].get('display_id')
-        self.user_id = self.scope['url_route']['kwargs'].get('user_id')
-        self.group_id = f'display_{self.display_id}_user_{self.user_id}' \
-            if self.user_id is not None else f'display_{self.display_id}'
+        self.assistant_id = self.scope['url_route']['kwargs'].get('assistant_id')
+        self.terminal_id = self.scope['url_route']['kwargs'].get('terminal_id')
+        self.group_id = f'display_{self.assistant_id}_user_{self.terminal_id}' \
+            if self.terminal_id is not None else f'display_{self.assistant_id}'
 
         # Join room group
         await self.channel_layer.group_add(
@@ -33,20 +33,20 @@ class DisplayConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data=None, bytes_data=None):
         text_data_json = json.loads(text_data)
         command = text_data_json.get('command')
-        display_id = text_data_json.get('display_id')
-        user_id = text_data_json.get('user_id')
+        assistant_id = text_data_json.get('assistant_id')
+        terminal_id = text_data_json.get('terminal_id')
         message = text_data_json.get('message')
 
-        # group = self.channel_name if display_id is not None else self.group_id
-        # Send message to display if display_id = none send to group 'user_id'
+        # group = self.channel_name if assistant_id is not None else self.group_id
+        # Send message to display if assistant_id = none send to group 'terminal_id'
         print(f'F[receive] Enviando a mensagem para: {self.group_id}')
         await self.channel_layer.group_send(
             self.group_id,
             {
                 'type': 'json.message',
                 'command': command,
-                'display_id': display_id,
-                'user_id': user_id,
+                'assistant_id': assistant_id,
+                'terminal_id': terminal_id,
                 'message': message,
             }
         )
@@ -55,15 +55,15 @@ class DisplayConsumer(AsyncWebsocketConsumer):
     # Receive message from room group
     async def json_message(self, event):
         command = event['command']
-        display_id = event['display_id']
-        user_id = event['user_id']
+        assistant_id = event['assistant_id']
+        terminal_id = event['terminal_id']
         message = event['message']
 
-        print(f'F[json_message]: sending message "{message}" to {display_id}/{user_id} with command {command}')
+        print(f'F[json_message]: sending message "{message}" to {assistant_id}/{terminal_id} with command {command}')
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
             'command': command,
-            'display_id': display_id,
-            'user_id': user_id,
+            'assistant_id': assistant_id,
+            'terminal_id': terminal_id,
             'message': message,
         }))

@@ -4,7 +4,7 @@ from .models import WatsonComponents, WatsonAccess, WatsonLogs
 
 
 @admin.register(WatsonComponents)
-class WatsonComponentsAdmin(admin.ModelAdmin):
+class AssistantComponentsAdmin(admin.ModelAdmin):
     list_display = (
         'pk_watson_components', 'dsc_comp', 'insert_date', 'update_date',
     )
@@ -21,14 +21,14 @@ class WatsonComponentsAdmin(admin.ModelAdmin):
 
 
 @admin.register(WatsonAccess)
-class WatsonAccessAdmin(admin.ModelAdmin):
+class AssistantAccessAdmin(admin.ModelAdmin):
     list_display = (
         'fk_watson_components', 'component_name', 'component_url', 'insert_date', 'update_date',
     )
 
 
 @admin.register(WatsonLogs)
-class WatsonLogsAdmin(admin.ModelAdmin):
+class AssistantLogsAdmin(admin.ModelAdmin):
     list_display = (
         'fk_user', 'fk_watson_components', 'sender_name', 'sender_message',
         'flag_invalid_response', 'flag_resolve', 'insert_date', 'update_date',
