@@ -9,7 +9,8 @@ class AssistantView(TemplateView):
     def get(self, request, *args, **kwargs):
         params = {
             'pk':  kwargs.get('pk'),
-            'dsc':  kwargs.get('dsc')
+            'dsc':  kwargs.get('dsc'),
+            'message': 'Olá!',
         }
         return render(request, self.template_name, params)
 
