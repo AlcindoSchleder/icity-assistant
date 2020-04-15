@@ -11,8 +11,9 @@ No Windows, ao rodar o ASGI com channels recebemos um erro NotImplementedError.
 Então, para rodar no windows é preciso fazer uma alteração no arquivo venv/lib/site-packages/twisted/internet/asyncioreactor.py:
 
 onde temos:
-from twisted.internet.interfaces import IReactorFDSet
 ```python
+from twisted.internet.interfaces import IReactorFDSet
+
 try:
     from asyncio import get_event_loop
 except ImportError:
