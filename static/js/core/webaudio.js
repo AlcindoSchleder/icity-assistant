@@ -110,4 +110,4 @@ $(document).ready(() => {
     setTimeout(() => {
         WebAudio.Init();
     }, 1000);
-)};
+});
