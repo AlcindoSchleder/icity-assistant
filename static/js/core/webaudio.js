@@ -16,23 +16,11 @@ const WebAudio = function() {
     }
 
     const InitAudioDevice = function() {
-        if (navigator.mediaDevices.getUserMedia()) {
-            navigator.mediaDevices.getUserMedia(constraints, startAudioDevice, function(err) {
-                has_audio = false;
-                console.log('Error on start audio device!', err);
-                alert('Error on start audio device! ', err.message);
-            });
-        } else {
-            if (!navigator.getUserMedia()) {
-                alert('Seu navegador não tem a funcionalidade de acessar o microfone/audio!');
-                return;
-            }
-            navigator.getUserMedia(constraints, startAudioDevice, function(err) {
-                has_audio = false;
-                console.log('Error on start audio device!', err);
-                alert('Error on start audio device! ', err.message);
-            });
-        }
+        navigator.getUserMedia(constraints, startAudioDevice, function(err) {
+            has_audio = false;
+            console.log('Error on start audio device!', err);
+            alert('Error on start audio device! ', err.message);
+        });
     };
     const initVaribles= function () {
         audioChunks = [];
@@ -119,5 +107,6 @@ $(document).ready(() => {
     //normalize navigator.getUserMedia
     navigator.getUserMedia || (navigator.getUserMedia = navigator.webkitGetUserMedia ||
                                navigator.mozGetUserMedia || navigator.msGetUserMedia);
+    sleep(1);
     WebAudio.Init();
 });
