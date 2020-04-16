@@ -16,14 +16,14 @@ const WebAudio = function() {
     }
 
     const InitAudioDevice = function() {
-        if (navigator.mediaDevices.getUserMedia) {
+        if (navigator.mediaDevices.getUserMedia()) {
             navigator.mediaDevices.getUserMedia(constraints, startAudioDevice, function(err) {
                 has_audio = false;
                 console.log('Error on start audio device!', err);
                 alert('Error on start audio device! ', err.message);
             });
         } else {
-            if (!navigator.getUserMedia) {
+            if (!navigator.getUserMedia()) {
                 alert('Seu navegador não tem a funcionalidade de acessar o microfone/audio!');
                 return;
             }
