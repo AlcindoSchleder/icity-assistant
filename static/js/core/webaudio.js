@@ -107,6 +107,6 @@ $(document).ready(() => {
     //normalize navigator.getUserMedia
     navigator.getUserMedia || (navigator.getUserMedia = navigator.webkitGetUserMedia ||
                                navigator.mozGetUserMedia || navigator.msGetUserMedia);
-    sleep(1);
-    WebAudio.Init();
-});
+    setTimeout(() => {
+        WebAudio.Init();
+     }, 1000);
