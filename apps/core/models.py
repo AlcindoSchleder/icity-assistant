@@ -25,7 +25,7 @@ class Assistants(models.Model):
 class Publicity(models.Model):
     pk_publicity = models.AutoField(primary_key=True, verbose_name='Código')
     fk_assistants = models.ManyToManyField(
-        Assistants, null=True, blank=True, db_table='icity-pub-assistants'
+        Assistants, blank=True, db_table='icity_pub_assistants'
     )
     title_media = models.CharField(max_length=50, verbose_name='Título')
     dsc_media = models.TextField(verbose_name='Descrição')
