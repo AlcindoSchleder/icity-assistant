@@ -109,4 +109,5 @@ $(document).ready(() => {
                                navigator.mozGetUserMedia || navigator.msGetUserMedia);
     setTimeout(() => {
         WebAudio.Init();
-     }, 1000);
+    }, 1000);
+}
