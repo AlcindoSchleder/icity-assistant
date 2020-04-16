@@ -7,8 +7,8 @@ const IndexEvents = function () {
     const DocumentsEvents = function () {
         $(document).on('keydown', function(event) {
             const key = (event.keyCode ? event.keyCode : event.which);
-            event.preventDefault();
             if (key == '27') {
+                event.preventDefault();
                 const href = window.location.href.replace('assistant', 'bot');
                 window.location.href = href;
             }
