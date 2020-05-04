@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_static_fontawesome',
-    'channels',
     'apps.core',
     'apps.assistant',
     'apps.login',
@@ -76,15 +75,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'icity_assistant.wsgi.application'
 
 ASGI_APPLICATION = "icity_assistant.routing.application"
-
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
-        },
-    },
-}
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -136,16 +126,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'staticfiles'),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Folder where store all uploaded Files
 MEDIA_URL = '/media/'

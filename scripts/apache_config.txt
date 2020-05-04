@@ -1,0 +1,69 @@
+<VirtualHost *:80>
+    ServerName icity.net.br
+    ServerAdmin suporte@icity.net.br
+
+    ErrorLog /var/log/httpd/error_log
+    CustomLog /var/log/httpd/access.log combined
+
+
+    DocumentRoot "/var/www/html"
+    <Directory "/var/www/html/">
+        AllowOverride None
+        Options Indexes FollowSymLinks
+        Require all granted
+    </Directory>
+
+
+    Header set Access-Control-Allow-Origin "http://localhost:8000"
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD"
+
+    WSGIPassAuthorization On
+    WSGIApplicationGroup %{GLOBAL}
+
+    Alias /favicon.ico /opt/python/apps/taf-car/static/favicon.ico
+
+    Alias /media/ /opt/python/assistant-icity/media/
+    Alias /static/ /opt/python/assistant-icity/static/
+    Alias /static/admin/ /opt/python/assistant-icity/venv/lib/python3.6/site-packages/django/contrib/admin/static/admin/
+    Alias /staticfiles/ /opt/python/assistant-icity/staticfiles/
+
+    # WSGIPythonHome /opt/python/assistant-icity/venv/lib/python3.6
+
+    WSGIDaemonProcess 189.90.56.210 processes=2 threads=15 \
+        python-home=/opt/python/assistant-icity/venv \
+        python-path=/opt/python/assistant-icity
+
+    WSGIScriptAlias / /opt/python/apps/assistant-icity/icity_assistant/wsgi.py \
+        process-group=162.214.50.174 \
+        application-group=%{GLOBAL}
+
+    WSGIApplicationGroup %{GLOBAL}
+
+    <Directory "/opt/python/icity-assitant/icity_assistant">
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    <Directory /opt/python/assistant-icity/static>
+        Require all granted
+    </Directory>
+
+    <Directory /opt/python/assistant-icity/staticfiles>
+        Require all granted
+    </Directory>
+
+    <Directory /opt/python/assistant-icity/venv>
+        Require all granted
+    </Directory>
+
+    <Directory /opt/python/assistant-icity/media>
+        Require all granted
+    </Directory>
+
+    <Directory /opt/python/assistant-icity/venv/lib/python3.6/site-packages/django/contrib/admin/static/admin>
+        Require all granted
+    </Directory>
+
+</VirtualHost>

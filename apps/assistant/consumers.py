@@ -11,8 +11,8 @@ class AssistantConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.assistant_id = self.scope['url_route']['kwargs'].get('assistant_id')
         self.terminal_id = self.scope['url_route']['kwargs'].get('terminal_id')
-        self.group_id = f'display_{self.assistant_id}_user_{self.terminal_id}' \
-            if self.terminal_id is not None else f'display_{self.assistant_id}'
+        self.group_id = f'bot_{self.assistant_id}_term_{self.terminal_id}' \
+            if self.terminal_id is not None else f'bot_{self.assistant_id}'
 
         # Join room group
         await self.channel_layer.group_add(
@@ -39,18 +39,17 @@ class AssistantConsumer(AsyncWebsocketConsumer):
 
         # group = self.channel_name if assistant_id is not None else self.group_id
         # Send message to display if assistant_id = none send to group 'terminal_id'
-        print(f'F[receive] Enviando a mensagem para: {self.group_id}')
-        await self.channel_layer.group_send(
-            self.group_id,
-            {
-                'type': 'json.message',
-                'command': command,
-                'assistant_id': assistant_id,
-                'terminal_id': terminal_id,
-                'message': message,
-            }
-        )
-        print('F[receive] Fim do recebimento da mensagem.....')
+        # print(f'F[receive] Enviando a mensagem para: {self.group_id}')
+        # await self.channel_layer.group_send(
+        #     self.group_id,
+        #     {
+        #         'type': 'json.message',
+        #         'command': command,
+        #         'assistant_id': assistant_id,
+        #         'terminal_id': terminal_id,
+        #         'message': message,
+        #     }
+        # )
 
     # Receive message from room group
     async def json_message(self, event):
@@ -59,7 +58,6 @@ class AssistantConsumer(AsyncWebsocketConsumer):
         terminal_id = event['terminal_id']
         message = event['message']
 
-        print(f'F[json_message]: sending message "{message}" to {assistant_id}/{terminal_id} with command {command}')
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
             'command': command,

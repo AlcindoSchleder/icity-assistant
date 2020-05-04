@@ -2,6 +2,7 @@
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from .models import WatsonComponents
+from apps.core.models import Assistants, AssistantLastContext
 from ibm_watson import AssistantV2
 from ibm_watson import language_translator_v3
 from ibm_watson import SpeechToTextV1
@@ -9,7 +10,8 @@ from ibm_watson import TextToSpeechV1
 # from ibm_watson import PersonalityInsightsV3
 # from ibm_watson import NaturalLanguageUnderstandingV1
 # from ibm_watson import ToneAnalyzerV3
-import assistant_setup
+# import assistant_setup
+from apps import assistant as app
 
 
 from ibm_cloud_sdk_core import get_authenticator_from_environment
@@ -38,6 +40,7 @@ Operações:
 
 class PyWatsonAssistant:
     user = None
+    context = None
     watson_auth = None
     watson_workspace = None
     watson_assistant = None
@@ -48,17 +51,44 @@ class PyWatsonAssistant:
     watson_nlu = None
     watson_tone_analyzer = None
 
-    def __init__(self, user: str = ''):
-        self.watson_auth = (get_authenticator_from_environment('assistant') or
-                            get_authenticator_from_environment('conversation'))
-        if user != '':
-            try:
-                user_obj = User.objects.get(username=user)
-            except ObjectDoesNotExist:
-                user_obj = None
-            self.user = None if user_obj is None else user_obj.username
-        self.watson_assistant = AssistantV2(version="2019-11-06", authenticator=self.watson_auth)
-        self.watson_workspace = assistant_setup.init_skill(self.watson_assistant)
+    def process_message(
+        self,
+        assistant_id: int,
+        terminal_id: str,
+        msg_type: int,
+        message,
+        user: str = None
+    ):
+        if msg_type not in app.MESSAGE_TYPES:
+            raise Exception(f'Tipo de mensagem inválido: {msg_type}')
+        if assistant_id < 1:
+            raise Exception(f'Código do Assistente não informado!: {message}')
+        try:
+            assist_obj = Assistants.objects.get(pk=assistant_id)
+        except Exception as e:
+            raise Exception(f'Código do Assistente não informado!: {message} - {e}')
+        self.context = ''
+        try:
+            if user is not None or user != '':
+                context_obj = AssistantLastContext.objects.get(pk=user)
+                self.context = context_obj.context
+        except ObjectDoesNotExist:
+            context = ''
+        
+        if msg_type == app.TEXT_MESSAGE:
+            self.watson_auth = (get_authenticator_from_environment('assistant') or
+                                get_authenticator_from_environment('conversation'))
+            self.watson_assistant = AssistantV2(
+                version=assist_obj.version, authenticator=self.watson_auth
+            );
+            # self.watson_workspace = assistant_setup.init_skill(self.watson_assistant)
+
+        user = 'magron'
+        try:
+            user_obj = User.objects.get(username=user)
+        except ObjectDoesNotExist:
+            user_obj = None
+        self.user = None if user_obj is None else user_obj.username
 
     def config_components(self):
         if self.user is None:

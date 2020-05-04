@@ -17,10 +17,17 @@
             </div>
             <div class="row sender-messages mt-4">
                 <div class="col-12">
-                    <input class="rounded" type="text" id="sender-text" name="sender-text" value="{{ pk }}-{{ dsc }}"/>
+                    <input class="rounded" type="text" id="sender-text" name="sender-text" value="{{ message }}"/>
                     <icon class="fas fa-microphone" id="btn-act-microphone"></icon>
                 </div>
             </div>
+        </div>
+        <div class="form-fields-data">
+            <input type="text" id="user" name="user" value="{{ user }}">
+            <input type="text" id="assistant_id" name="assistant_id" value="{{ pk }}">
+            <input type="text" id="dsc_assistant" name="dsc_assistant" value="{{ dsc }}">
+            <input type="text" id="terminal_id" name="terminal_id" value="{{ terminal_id }}">
+            <input type="text" id="bot_context" name="bot_context" value="">
         </div>
     {% endblock %}
     {% block script %}

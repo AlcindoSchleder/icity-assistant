@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import sys
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
+from apps.core.models import Assistants
 
 
 class AsyncMessages:
@@ -11,11 +13,11 @@ class AsyncMessages:
         data = {
             'type': 'json.message',
             'command': command,
-            'display_id': group,
-            'user_id': member,
+            'assistant_id': group,
+            'terminal_id': member,
             'message': message,
         }
-        member_id = f'display_{group}_user_{member}'
+        member_id = f'bot_{group}_term_{member}'
         async_to_sync(channel_layer.group_send)(member_id, data)
 
     @staticmethod
@@ -24,8 +26,15 @@ class AsyncMessages:
         data = {
             'type': 'json.message',
             'command': command,
-            'display_id': group,
+            'assistant_id': group,
             'message': message,
         }
-        group_id = f'user_{group}'
+        group_id = f'bot_{group}'
         async_to_sync(channel_layer.group_send)(group_id, data)
+
+    def process_message_from_web(
+            self, command: str, group: int, member: str, message: str
+    ):
+        assistant = Assistants.objects.get(pk=group)
+        class_bot = getattr(sys.modules[__name__], assistant.assistant_class)
+        instance_bot = class_bot(group)

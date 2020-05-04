@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+import uuid
 from unicodedata import normalize
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
@@ -15,6 +16,8 @@ class HomeView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         msg = ''
+        if request.session.get('terminal_id') is None:
+            request.session['terminal_id'] = str(uuid.uuid4())
         try:
             qry_assist = Assistants.objects.all()
             publicity = Publicity.objects.filter(fk_assistants=None).order_by('pk_publicity')
