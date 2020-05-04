@@ -74,7 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'icity_assistant.wsgi.application'
 
-ASGI_APPLICATION = "icity_assistant.routing.application"
+# ASGI_APPLICATION = "icity_assistant.routing.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
