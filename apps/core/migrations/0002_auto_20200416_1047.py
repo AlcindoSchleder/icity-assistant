@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
         ('core', '0001_initial'),
     ]
 
+    # comment to add at git repository
     operations = [
         migrations.AlterField(
             model_name='publicity',
